@@ -1,4 +1,4 @@
-
+<?php session_start(); ?>
 <?php 
 
 if (isset($_POST['login_button'])) {
@@ -10,15 +10,21 @@ if (isset($_POST['login_button'])) {
 
 if (isset($_POST['save_item_button'])) {
     $item = $_POST['item'];
- 
+   
 
-    if ( !isset($_SESSION['items'])) {
-        $_SESSION['items'][]  = $item;
-    }else {
+
+    if (!isset($_SESSION['items'])) {
         $_SESSION['items'] = [];
-    }    
- 
+     
+    }
+   
+    $_SESSION['items'][] = $item;
 
+  
+    
+
+
+ 
 
 
 
@@ -105,7 +111,7 @@ if (isset($_POST['save_item_button'])) {
 
 
 
-    
+
   </div>
   </form>
 
@@ -119,7 +125,7 @@ if (isset($_POST['save_item_button'])) {
     </tr>
   </thead>
   <tbody>
-    <?php if (isset($_SESSION['items']))  { ?>
+   
    <?php foreach($_SESSION['items'] as $item) {?>
     <tr>
       <td><?php echo $item; ?></td>
@@ -129,7 +135,7 @@ if (isset($_POST['save_item_button'])) {
       </td>
     </tr>
     <?php 
-   }
+   
     } ?>
   </tbody>
 </table>
